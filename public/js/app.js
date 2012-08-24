@@ -6,6 +6,7 @@ require.config({
   }
 });
 
-require(["jquery", "underscore", "backbone"], function($, _, backbone) {
-  console.log($("body"), _.extend({},{go: "team"}), backbone);
+require(["jquery", "underscore", "backbone", "router"], function($, _, Backbone, Router) {
+  console.log(Router);
+  var router = new Router();
 });
