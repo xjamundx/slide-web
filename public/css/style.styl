@@ -1,5 +1,59 @@
-body
-  padding: 50px
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
-a
-  color: #00B7FF
+html {
+  background: #ccc;
+}
+
+body {
+}
+
+.template {
+  display: none;
+}
+
+.slide {
+  width: 150px;
+  height: 150px;
+}
+
+.slide-thumb {
+  height: 100%;
+  width: 100%;
+}
+
+.slide-title {
+  font-size: 14px;
+}
+
+.r {
+  text-align: right;
+}
+
+.sub {
+  font-size: 13px;
+  color: #333;
+}
+
+.deck {
+  border-radius: 12px;
+  background: #000;
+  color: white;
+  width: 165px;
+  height: 165px;
+  float: left;
+  overflow: hidden;
+  padding: 15px;
+  margin: 0 25px 25px 0;
+}
+
+.main {
+  padding: 20px;
+  border-radius: 20px;
+  background: white;
+  width: 640px;
+  margin: 50px;
+}
+
+.main::after {
+  content: " ";
+  display: block;
+  clear: both;
+}
