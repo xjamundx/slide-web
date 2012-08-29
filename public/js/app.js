@@ -26,7 +26,7 @@ var AppRouter = Backbone.Router.extend({
     },
     deck: function(deckId) {
       if (!Decks.length) {
-        Decks.fetch({success: loadSlide});
+        Decks.fetch({success: loadSlides});
       } else {
         loadSlides();
       }

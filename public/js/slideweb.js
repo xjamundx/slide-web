@@ -30,7 +30,7 @@ var AppRouter = Backbone.Router.extend({
     },
     deck: function(deckId) {
       if (!Decks.length) {
-        Decks.fetch({success: loadSlide});
+        Decks.fetch({success: loadSlides});
       } else {
         loadSlides();
       }
@@ -121,7 +121,7 @@ setTimeout(function() {
 }, 30);
 ;;
 /* handsfree : public/tmpl/slide.hbs*/
-templates['public/tmpl/slide.hbs'] = Handlebars.compile('      <a href=\"/#slides/{{deckId}}/{{num}}\">\n      <article class=\"slide\">\n        <img src=\"{{img}}\" class=\"slide-thumb\">\n        <h2 class=\"slide-title\">{{title}}</h2>\n      </article>\n      </a>\n');
+templates['public/tmpl/slide.hbs'] = Handlebars.compile('      <a href=\"/#slides/{{deckId}}/{{num}}\">\n      <article class=\"slide\">\n        {{#if img}}\n        <img src=\"{{img}}\" class=\"slide-thumb\">\n        {{/if}}\n        <h2 class=\"slide-title\">{{title}}</h2>\n      </article>\n      </a>\n');
 /* handsfree : public/tmpl/deck.hbs*/
 templates['public/tmpl/deck.hbs'] = Handlebars.compile('      <a href=\"/#decks/{{id}}\">\n      <article class=\"deck\">\n        <h2>{{title}}</h2>\n        <div class=\"r sub\">{{author}}</div>\n      </article>\n      </a>\n\n');
 return module.exports;
