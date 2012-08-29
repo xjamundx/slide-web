@@ -6,22 +6,31 @@
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
+
+    
+    <div class="main">
+      <header><h1 id="title">Slides Web</h1></header>
+      <div class="content">
+      </div>
+    </div>
+
     <script id="template-slide" type="text/x-handlebars-template">
+      <a href="/#slides/{{deckId}}/{{num}}">
       <article class="slide">
-        <img src="http://farm8.staticflickr.com/7271/7588148580_89b3b0968c_m.jpg" class="slide-thumb">
-        <h2 class="slide-title">My Family Vacation</h2>
+        <img src="{{img}}" class="slide-thumb">
+        <h2 class="slide-title">{{title}}</h2>
       </article>
+      </a>
     </script>
+  
     <script id="template-deck" type="text/x-handlebars-template">
+      <a href="/#decks/{{id}}">
       <article class="deck">
         <h2>{{title}}</h2>
         <div class="r sub">{{author}}</div>
       </article>
+      </a>
     </script>
-
-    <div id="decks" class="main">
-      <h1>Slides Web</h1>
-    </div>
 
     <script src="/js/lib/zepto.min.js"></script>
     <script src="/js/lib/hbs.js"></script>

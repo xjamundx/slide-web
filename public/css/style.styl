@@ -5,6 +5,9 @@ html {
 body {
 }
 
+a {
+  text-decoration: none;
+}
 .template {
   display: none;
 }
@@ -12,6 +15,11 @@ body {
 .slide {
   width: 150px;
   height: 150px;
+  position: relative;
+  margin 10px
+  display inline-block
+  background: #333;
+  border-radius: 5px;
 }
 
 .slide-thumb {
@@ -19,9 +27,12 @@ body {
   width: 100%;
 }
 
-.slide-title {
-  font-size: 14px;
-}
+.slide-title
+  font-size: 14px
+  position: absolute;
+  top: 0px;
+  color: white
+  left: 5px;
 
 .r {
   text-align: right;
