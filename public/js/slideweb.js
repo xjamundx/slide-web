@@ -1,3 +1,7 @@
+var slideweb;
+slideweb = (function() {
+var module = {exports: {}};
+var exports = module.exports;
 var Slide = Backbone.Model.extend({});
 var Deck = Backbone.Model.extend({});
 var $content = $('.content');
@@ -115,3 +119,10 @@ var DecksView = Backbone.View.extend({
 setTimeout(function() {
   var router = new AppRouter();
 }, 30);
+;;
+/* handsfree : public/tmpl/slide.hbs*/
+templates['public/tmpl/slide.hbs'] = Handlebars.compile('      <a href=\"/#slides/{{deckId}}/{{num}}\">\n      <article class=\"slide\">\n        <img src=\"{{img}}\" class=\"slide-thumb\">\n        <h2 class=\"slide-title\">{{title}}</h2>\n      </article>\n      </a>\n');
+/* handsfree : public/tmpl/deck.hbs*/
+templates['public/tmpl/deck.hbs'] = Handlebars.compile('      <a href=\"/#decks/{{id}}\">\n      <article class=\"deck\">\n        <h2>{{title}}</h2>\n        <div class=\"r sub\">{{author}}</div>\n      </article>\n      </a>\n\n');
+return module.exports;
+}).call(this);

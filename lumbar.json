@@ -1,0 +1,13 @@
+{
+  "modules": {
+    "slideweb": [
+      {"src": "public/js/app.js" }
+    ]
+  },
+  "templates": {
+    "public/js/app.js": [
+      "public/tmpl/slide.hbs",
+      "public/tmpl/deck.hbs"
+    ]
+  }
+}
