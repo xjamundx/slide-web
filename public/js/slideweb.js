@@ -102,7 +102,7 @@ var DecksView = Backbone.View.extend({
   el: $content,
   initialize: function() {
     this.collection.fetch();
-    this.collection.on('reset', this.render.bind(this));
+    this.collection.on('reset', this.render, this);
   },
   render: function() {
     var self = this;
@@ -116,9 +116,7 @@ var DecksView = Backbone.View.extend({
   }
 });
 
-setTimeout(function() {
-  var router = new AppRouter();
-}, 30);
+var router = new AppRouter();
 ;;
 /* handsfree : public/tmpl/slide.hbs*/
 templates['public/tmpl/slide.hbs'] = Handlebars.compile('      <a href=\"/#slides/{{deckId}}/{{num}}\">\n      <article class=\"slide\">\n        {{#if img}}\n        <img src=\"{{img}}\" class=\"slide-thumb\">\n        {{/if}}\n        <h2 class=\"slide-title\">{{title}}</h2>\n      </article>\n      </a>\n');

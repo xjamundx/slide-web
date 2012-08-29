@@ -98,7 +98,7 @@ var DecksView = Backbone.View.extend({
   el: $content,
   initialize: function() {
     this.collection.fetch();
-    this.collection.on('reset', this.render.bind(this));
+    this.collection.on('reset', this.render, this);
   },
   render: function() {
     var self = this;
@@ -112,6 +112,4 @@ var DecksView = Backbone.View.extend({
   }
 });
 
-setTimeout(function() {
-  var router = new AppRouter();
-}, 30);
+var router = new AppRouter();
