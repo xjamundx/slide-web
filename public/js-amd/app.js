@@ -7,11 +7,6 @@ require.config({
     i18nprecompile: "lib/i18nprecompile",
     handlebars: "lib/Handlebars"
   },
-  pragmasOnSave: {
-	  excludeHbsParser: true,
-	  excludeHbs: true,
-	  excludeAfterBuild: true
-  },
   hbs : {
 	disableI18n: true
   }
