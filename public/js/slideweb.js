@@ -1,11 +1,20 @@
 var slideweb;
 slideweb = (function() {
+var router;
 var module = {exports: {}};
 var exports = module.exports;
 var Slide = Backbone.Model.extend({});
 var Deck = Backbone.Model.extend({});
 var $content = $('.content');
 var $title = $('#title');
+var addNewDeckLink = function(){
+    var $wrapper = $('#add_new_deck_wrapper');
+    if($wrapper.length < 1){
+        $content.append('<span id="add_new_deck_wrapper"><a title="Click to add a new deck" href="/#add_new_deck">New</a></span>');
+        $wrapper = $('#add_new_deck_wrapper')
+    }
+    return $wrapper;
+}
 var SlideList = Backbone.Collection.extend({
   model: Slide
 });
@@ -23,7 +32,11 @@ var AppRouter = Backbone.Router.extend({
     routes: {
       "": "decks",
       "decks/:deckId": "deck",
-      "slides/:deckId/:num": "slide"
+      "slides/:deckId/:num": "slide",
+      "add_new_deck": "add_new_deck"
+    },
+    add_new_deck: function(){
+        var add_form = new AddDecksView({collection: Decks});
     },
     decks: function() {
       var decks = new DecksView({collection: Decks});
@@ -36,8 +49,8 @@ var AppRouter = Backbone.Router.extend({
       }
       
       function loadSlides() {
-          var deck = new SlidesView({model: Decks.get(deckId)});
-      }
+    	var deck = new SlidesView({model: Decks.get(deckId)});
+      };
     },
     slide: function(deckId, num) {
       if (!Decks.length) {
@@ -48,7 +61,7 @@ var AppRouter = Backbone.Router.extend({
       
       function loadSlide() {
         var deck = Decks.get(deckId);
-        var slide = deck.get('slides')[num];
+        var slide = deck.get('slides')[num];       
         slide.deckId = deckId;
         slide.num = num;
         $title.text(slide.title);
@@ -59,12 +72,29 @@ var AppRouter = Backbone.Router.extend({
     }
 });
 
+var AddDecksView = Backbone.View.extend({
+  el: $content,
+  initialize: function() {      
+    this.collection.fetch();
+    this.collection.on('reset', this.render, this);
+  },
+  render: function() {
+    var self = this;
+    $title.text('Add New Deck');
+    $(this.el).empty();
+    this.template = templates['public/tmpl/add_deck.hbs'];
+    $(self.el).append(this.template({}));
+    add_new_deck_form_wrapper(router, Decks);
+    return this;
+  }
+});
+
 var DeckView = Backbone.View.extend({
   initialize: function() {
     this.template = templates['public/tmpl/deck.hbs'];
   },
   render: function() {
-    this.el = this.template(this.model.toJSON());
+    this.el = this.template(this.model.toJSON());    
     return this;
   }
 });
@@ -78,12 +108,16 @@ var SlidesView = Backbone.View.extend({
     var self = this;
     $title.text(this.model.get('title'));
     $(this.el).empty();
-    this.model.get("slides").forEach(function(slide, i) {
-      slide.deckId = self.model.get('id');
-      slide.num = i;
-      var view = new SlideView({model:new Slide(slide)});
-      $(self.$el).append(view.render().el);
-    });
+    if(!this.model.get("slides").length){
+        $(self.$el).html('No slides found. Return <a href="/">home</a>...');
+    } else {
+        this.model.get("slides").forEach(function(slide, i) {
+		  slide.deckId = self.model.get('id');
+		  slide.num = i;
+		  var view = new SlideView({model:new Slide(slide)});
+		  $(self.$el).append(view.render().el);
+		});
+    }
     return this;
   }
 });
@@ -100,7 +134,7 @@ var SlideView = Backbone.View.extend({
 });
 var DecksView = Backbone.View.extend({
   el: $content,
-  initialize: function() {
+  initialize: function() {      
     this.collection.fetch();
     this.collection.on('reset', this.render, this);
   },
@@ -108,6 +142,7 @@ var DecksView = Backbone.View.extend({
     var self = this;
     $title.text('All Slides');
     $(this.el).empty();
+    addNewDeckLink();
     this.collection.forEach(function(deck) {
       var view = new DeckView({model: deck});
       $(self.el).append(view.render().el);
@@ -116,11 +151,13 @@ var DecksView = Backbone.View.extend({
   }
 });
 
-var router = new AppRouter();
+router = new AppRouter();
 ;;
 /* handsfree : public/tmpl/slide.hbs*/
 templates['public/tmpl/slide.hbs'] = Handlebars.compile('      <a href=\"/#slides/{{deckId}}/{{num}}\">\n      <article class=\"slide\">\n        {{#if img}}\n        <img src=\"{{img}}\" class=\"slide-thumb\">\n        {{/if}}\n        <h2 class=\"slide-title\">{{title}}</h2>\n      </article>\n      </a>\n');
 /* handsfree : public/tmpl/deck.hbs*/
 templates['public/tmpl/deck.hbs'] = Handlebars.compile('      <a href=\"/#decks/{{id}}\">\n      <article class=\"deck\">\n        <h2>{{title}}</h2>\n        <div class=\"r sub\">{{author}}</div>\n      </article>\n      </a>\n\n');
+/* handsfree : public/tmpl/add_deck.hbs*/
+templates['public/tmpl/add_deck.hbs'] = Handlebars.compile('<div class="form_wrapper"><div class="add_deck_form_row"><label>Deck Name</label><input type="text" class="deck_name" /></div><div class="add_deck_form_row"><label>Author Name</label><input type="text" class="deck_author" /></div><div class="add_deck_form_row"><input class="send_new_deck_request" type="button" value="Add Deck" />&nbsp;<span class="form_feedback_wrapper"></span></div></div>');
 return module.exports;
 }).call(this);
