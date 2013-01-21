@@ -27,14 +27,3 @@ exports.slide = function(req, res) {
   slide.slides = [slide.slides[num]];
   res.json(slide);
 };
-
-exports.add_new_deck = function(req, res){
-    var newID = decks.length;
-    decks.push({
-        id: newID,
-        title: (unescape(req.body.name) || 'New Deck'),
-        author: (unescape(req.body.author) || 'Jamund Ferguson'),
-        slides: []
-    });
-    res.json({result:true, msg:'Deck added!', id: newID});
-}
