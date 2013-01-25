@@ -31,6 +31,7 @@ app.configure('development', function(){
 });
 
 app.get('/decks', routes.decks);
+app.post('/decks/add', routes.add_new_deck);
 app.get('/decks/:id', routes.deck);
 app.get('/decks/:id/:num', routes.slide);
 app.get('/prez', routes.prez);
