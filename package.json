@@ -1,5 +1,5 @@
 {
-  "name": "Slide Web",
+  "name": "SlideWeb",
   "version": "0.0.1-6",
   "private": true,
   "scripts": {
@@ -14,6 +14,9 @@
   },
   "subdomain": "slideweb",
   "engines": {
-    "node": "0.6.x"
+    "node": "0.8.x"
+  },
+  "devDependencies": {
+    "grunt-contrib-requirejs": "~0.3.4"
   }
 }
