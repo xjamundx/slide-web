@@ -15,5 +15,8 @@
   "subdomain": "slideweb",
   "engines": {
     "node": "0.8.x"
+  },
+  "devDependencies": {
+    "grunt-contrib-requirejs": "~0.3.4"
   }
 }
