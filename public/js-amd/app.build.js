@@ -16,6 +16,7 @@
 	hbs : {
 		disableI18n: true
 	},
+//    optimize: "none",
     name: "lib/almond",
     wrap: true,
     insertRequire: ['app'],
