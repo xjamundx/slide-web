@@ -1,0 +1,13 @@
+<span>
+	<a title="Back" href="#/decks/{{deckId}}">Back</a>
+</span>
+<a>
+	<article class="slide">
+		<!-- <ng:switch on="slide.img || ''">
+			<span ng-switch-when=''></span>
+			<img src="{{slide.img}}" class="slide-thumb" ng-switch-default/>
+		</ng:switch> -->
+		<img ng-src="{{slide.img||''}}" src="" class="slide-thumb"/>
+		<h2 class="slide-title">{{slide.title}}</h2>
+	</article>
+</a>
