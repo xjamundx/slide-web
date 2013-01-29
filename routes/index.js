@@ -20,6 +20,15 @@ exports.deck = function(req, res) {
   res.json(decks[id]);
 };
 
+exports.addSlide = function(req, res) {
+  var deckId = req.params.id,
+      newSlide = decks[deckId].slides.push({
+        title: unescape(req.body.title) || 'New slide',
+        img: unescape(req.body.img) || 'http://farm8.staticflickr.com/7271/7588148580_89b3b0968c_m.jpg'
+      });
+  res.json({ result: true, deckId: deckId, slideId: newSlide - 1 });
+}
+
 exports.slide = function(req, res) {
   var id = req.params.id;
   var num = req.params.num;

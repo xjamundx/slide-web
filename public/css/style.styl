@@ -113,3 +113,49 @@ a {
 .add_deck_form_row input[type='button']
   padding: 5px;
   margin: 0;
+
+
+// New styling for form elements and buttons.
+.btn
+  border none
+  border-radius 0.7em
+  color white
+  display inline-block
+  font-size 0.9em
+  padding 0.7em
+
+  &.blue
+    background #3778CC
+
+  &.green
+    background #37CC78
+
+    &:disabled
+      background #ccc
+      font-style italic
+
+.form-container
+  background-color #eee
+  border-radius 0.7em
+  display inline-block
+  padding 1em
+
+  .feedback
+    display inline-block
+    font-size 0.8em
+
+    &.error
+      color #A32222
+
+  label
+    display block
+    font-weight bold
+
+  input[type="text"]
+    border none
+    border-radius 0.5em
+    font-size 1em
+    margin-bottom 1em
+    outline 0
+    padding 0.3em
+    width 20em
