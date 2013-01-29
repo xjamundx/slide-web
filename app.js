@@ -33,6 +33,7 @@ app.configure('development', function(){
 app.get('/decks', routes.decks);
 app.post('/decks/add', routes.add_new_deck);
 app.get('/decks/:id', routes.deck);
+app.post('/decks/:id', routes.addSlide);
 app.get('/decks/:id/:num', routes.slide);
 app.get('/prez', routes.prez);
 app.get('/prez/:id', routes.pres);

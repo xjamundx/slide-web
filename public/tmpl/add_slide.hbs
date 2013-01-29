@@ -1,0 +1,13 @@
+<h2>Add new slide for <em>{{title}}</em></h2>
+<form id="js-slide-form" class="form-container" action="/decks/{{id}}">
+    <label for="title">Slide Name</label>
+    <input type="text" id="title" name="title" placeholder="Example: Slide for Dummy deck." required="required" />
+    
+    <label for="img">Image (optional)</label>
+    <input type="text" id="img" name="img" placeholder="URL to image." />
+
+    <div>
+        <input type="submit" class="btn green" value="Submit slide" />
+        <div class="feedback"></div>
+    </div>
+</form>
