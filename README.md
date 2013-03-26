@@ -12,18 +12,20 @@ This app shows some fake slides, to get started checkout the out and type the fo
 
 ## Notes
 
-To see the AMD version go to this URL:
-http://localhost:3000/index-amd.html
+To see the dev version go to this URL:
+http://localhost:3000/index.html
+
+To see the production version go to this URL:
+http://localhost:3000/index-prod.html
 
 Important files:
-* /public/js/ - non-amd version
-* /public/js-amd/ - amd version
-* /public/js-amd/app.js - main app
-* /public/js-amd/app.build.js - build settings
-* /public/index-amd.html - shows how to setup require.js
-* /public/index-amd.built.html - shows how to use compiled version
+* /public/js/ - amd js
+* /public/js/app.js - main app
+* /public/js/app.build.js - build settings
+* /public/index.html - shows how to setup require.js
+* /public/index-prod.html - shows how to use compiled version
 
 ### Compiling
 
-    cd public/js-amd/
-    r.js -o app.build.js 
+    grunt
+
