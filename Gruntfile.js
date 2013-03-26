@@ -7,16 +7,10 @@ module.exports = function(grunt) {
     test: {
       files: ['test/**/*.js']
     },
-    lint: {
-      files: ['grunt.js', 'lib/**/*.js', 'test/**/*.js']
-    },
-//    watch: {
-//      files: '<config:lint.files>',
-//      tasks: 'default'
-//    },
     jshint: {
+      files: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js', 'public/js/**/*.js', '!public/js/lib/**/*.js', '!public/js/app.buil*.js'],
       options: {
-        curly: true,
+        curly: false,
         eqeqeq: true,
         immed: true,
         latedef: true,
@@ -26,10 +20,18 @@ module.exports = function(grunt) {
         undef: true,
         boss: true,
         eqnull: true,
-        node: true
-      },
-      globals: {
-        exports: true
+        node: true,
+        white: false,
+        asi: true,
+        smarttabs: true,
+        jquery: true,
+        nonstandard: true,
+        globals: {
+          exports: true,
+          define: true,
+          require: true,
+          Backbone: true
+        }
       }
     },
     requirejs: {
@@ -43,21 +45,20 @@ module.exports = function(grunt) {
             i18nprecompile: "lib/i18nprecompile",
             handlebars: "lib/Handlebars"
           },
-//          optimize: "none",
           insertRequire: ['app'],
           name: "lib/almond",
-          baseUrl: "public/js-amd",
+          baseUrl: "public/js",
           include: "app",
-          mainConfigFile: "public/js-amd/app.build.js",
-          out: "public/js-amd/app.built.js"
+          mainConfigFile: "public/js/app.build.js",
+          out: "public/js/app.built.js"
         }
       }
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
-  grunt.registerTask('default', 'requirejs');
-// Default task.
-// grunt.registerTask('default', 'lint test');
+  grunt.registerTask('default', ['jshint', 'requirejs']);
 
 };

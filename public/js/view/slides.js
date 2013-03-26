@@ -2,7 +2,7 @@ define(function(require) {
 	var $ = require('jquery')
 	var Backbone = require('backbone')
 	var SlideView = require('view/slide')
-	var Slide = require('model/Slide')
+	var Slide = require('model/slide')
 	return Backbone.View.extend({
 	  el: '.content',
 	  initialize: function() {
