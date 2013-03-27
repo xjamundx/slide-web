@@ -1,15 +1,22 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="slideweb">
   <head>
     <meta charset="utf-8">
     <title>Slide-Web</title>
     <link rel="stylesheet" href="/css/style.css">
-    <script data-main="js/app" src="js/lib/require.js"></script>
+    <meta name="viewport" content="width=device-width">
+    <script src="/js/lib/angular.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/controllers.js"></script>
+    <script src="/js/services.js"></script>
+    <script src="/js/lib/angular-resource.min.js"></script>
   </head>
   <body>
-    <div id="decks" class="main">
-      <h1>Slides Web</h1>
-      <div class="content"></div>
+    <div class="main">
+      <header><h1 id="title" >{{pageTitle}}</h1></header>
+      <div class="content">
+        <div class="ng-view"></div>
+      </div>
     </div>
   </body>
 </html>

@@ -8,6 +8,7 @@ angular.module('slidewebServices', []).
   factory('$Decks', function($http){
   return {
   	query: function () {
+      var self = this;
   	  return $http.get('/decks', {}).then( function (response) {
   	  	self.data = response.data;
   	  	return response.data;

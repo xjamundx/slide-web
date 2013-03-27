@@ -1,18 +1,12 @@
-require.config({
-  paths: {
-    jquery: "lib/zepto.min",
-    underscore: "lib/lodash.custom.min",
-    backbone: "lib/backbone-min",
-    hbs: "lib/hbs",
-    i18nprecompile: "lib/i18nprecompile",
-    handlebars: "lib/Handlebars"
-  },
-  hbs : {
-	  disableI18n: true
-  }
-});
-
-define(function(require) {
-  var AppRouter = require('router');
-  new AppRouter();
+var app = angular.module('slideweb', ['slidewebServices']).
+  config(['$routeProvider', function($routeProvider) {
+  $routeProvider.
+      when('/decks', {templateUrl: 'partials/deck-list.html',   controller: DeckListCtrl}).
+      when('/decks/:deckId', {templateUrl: 'partials/deck-detail.html', controller: DeckDetailCtrl}).
+      when('/slide/:deckId/:slideId', {templateUrl: 'partials/slide.html', controller: SlideDetailCtrl}).
+      otherwise({redirectTo: '/decks'});
+}]);
+  
+app.run(function($rootScope){
+	$rootScope.pageTitle = "Slide Web";
 });

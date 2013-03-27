@@ -27,10 +27,7 @@ module.exports = function(grunt) {
         jquery: true,
         nonstandard: true,
         globals: {
-          exports: true,
-          define: true,
-          require: true,
-          Backbone: true
+          angular: true
         }
       }
     },
