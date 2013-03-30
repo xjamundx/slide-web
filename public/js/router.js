@@ -6,9 +6,15 @@ define(function(require) {
 	var SlideView = require('view/slide');
 	var Slide = require('model/slide');
 	var Decks = new DeckList();
+	var HeaderModel = require('model/header');
+	var HeaderView = require('view/header');
+	var header = new HeaderModel();
+	new HeaderView({model:header});
 
 	function loadSlides(deckId) {
-	  new SlidesView({model: Decks.get(deckId)});
+	  var deck = Decks.get(deckId);
+	  header.set('title', deck.get('title'))
+	  new SlidesView({model: deck});
 	}
 
 	function loadSlide(deckId, num) {
@@ -16,7 +22,8 @@ define(function(require) {
 		var slide = deck.get('slides')[num];
 		slide.deckId = deckId;
 		slide.num = num;
-		$('#title').text(slide.title);
+		header.set('title', slide.title);
+//		$('#title').text(slide.title);
 		var s = new Slide(slide);
 		var view = new SlideView({model: s});
 		$('.content').html(view.render().el);
@@ -25,13 +32,14 @@ define(function(require) {
 	return Backbone.Router.extend({
 	    initialize: function() {
 	      Backbone.history.start();
-	    },  
+	    },
 	    routes: {
 	      "": "decks",
 	      "decks/:deckId": "deck",
 	      "slides/:deckId/:num": "slide"
 	    },
 	    decks: function() {
+            header.set({title:'Slides Web'});
 			var decks = new DecksView({collection: Decks});
 	    },
 	    deck: function(deckId) {
