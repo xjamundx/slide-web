@@ -24,7 +24,7 @@ function DeckDetailCtrl($scope, $Decks, $routeParams, $rootScope) {
 
   $scope.doLoad = function (deckId) {
     $Decks.get(deckId).then(function(response){
-      $rootScope.pageTitle = response.title;
+        $rootScope.Page.setTitle(response.title);
       $scope.deck = response;
     });
   }
@@ -43,7 +43,7 @@ function SlideDetailCtrl($scope, $Decks, $routeParams, $rootScope) {
     $Decks.get(deckId).then(function(response){
       var deck = response;
       $scope.slide = deck.slides[slideId];
-      $rootScope.pageTitle = $scope.slide.title;
+        $rootScope.Page.setTitle($scope.slide.title);
     });
   }
   $scope.doLoad($routeParams.deckId, $routeParams.slideId);
