@@ -21,3 +21,16 @@ angular.module('slidewebServices', []).
   	}
   }
 });
+
+angular.module('pageService', []).
+  factory('Page', function() {
+    var title = "Slide Web";
+    return {
+        title: function() {
+            return title;
+        },
+        setTitle: function(newTitle) {
+            title = newTitle;
+        }
+    };
+});

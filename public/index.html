@@ -2,7 +2,7 @@
 <html lang="en" ng-app="slideweb">
   <head>
     <meta charset="utf-8">
-    <title>Slide-Web</title>
+    <title>{{ Page.title() }}</title>
     <link rel="stylesheet" href="/css/style.css">
     <meta name="viewport" content="width=device-width">
     <script src="/js/lib/angular.min.js"></script>
@@ -13,7 +13,7 @@
   </head>
   <body>
     <div class="main">
-      <header><h1 id="title" >{{pageTitle}}</h1></header>
+      <header><h1 id="title">{{ Page.title() }}</h1></header>
       <div class="content">
         <div class="ng-view"></div>
       </div>
