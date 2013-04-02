@@ -1,4 +1,4 @@
-var app = angular.module('slideweb', ['slidewebServices']).
+var app = angular.module('slideweb', ['slidewebServices', 'pageService']).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
       when('/decks', {templateUrl: 'partials/deck-list.html',   controller: DeckListCtrl}).
@@ -6,7 +6,7 @@ var app = angular.module('slideweb', ['slidewebServices']).
       when('/slide/:deckId/:slideId', {templateUrl: 'partials/slide.html', controller: SlideDetailCtrl}).
       otherwise({redirectTo: '/decks'});
 }]);
-  
-app.run(function($rootScope){
-	$rootScope.pageTitle = "Slide Web";
+
+app.run(function($rootScope, Page){
+    $rootScope.Page = Page;
 });
