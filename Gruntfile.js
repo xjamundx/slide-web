@@ -30,7 +30,8 @@ module.exports = function(grunt) {
           exports: true,
           define: true,
           require: true,
-          Backbone: true
+          Backbone: true,
+          window: true
         }
       }
     },
@@ -53,12 +54,27 @@ module.exports = function(grunt) {
           out: "public/js/app.built.js"
         }
       }
+    },
+    jst: {
+      compile: {
+        options: {
+          templateSettings: {
+            evaluate:    /\{\{(.+?)\}\}/g,
+            interpolate: /\{\{=(.+?)\}\}/g,
+            escape:      /\{\{-(.+?)\}\}/g
+          }
+        },
+        files: {
+          "public/tmpl/templates.js": ["public/tmpl/**/*.html"]
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-contrib-jst');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
-  grunt.registerTask('default', ['jshint', 'requirejs']);
+  grunt.registerTask('default', ['jshint', 'requirejs', 'jst']);
 
 };
