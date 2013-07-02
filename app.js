@@ -1,4 +1,5 @@
 var express = require('express');
+var engines = require('consolidate');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
@@ -9,7 +10,8 @@ var nib = require('nib');
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'hjs');
+  app.engine('html', engines.underscore);
+  app.set('view engine', 'html');
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
